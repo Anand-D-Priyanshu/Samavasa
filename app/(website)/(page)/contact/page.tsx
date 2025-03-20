@@ -14,7 +14,6 @@ const ContactUs: React.FC = () => {
     setStatus("Sending...");
 
     try {
-      // Replace this URL with your actual API endpoint
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -25,7 +24,7 @@ const ContactUs: React.FC = () => {
 
       if (response.ok) {
         setStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" }); // Clear form
+        setFormData({ name: "", email: "", message: "" });
       } else {
         setStatus("Failed to send message. Please try again.");
       }
