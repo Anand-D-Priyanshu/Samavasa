@@ -1,10 +1,10 @@
-"use client"; // This is a client component
+"use client"; 
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa"; // Importing icons
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa"; 
 
 function Signup() {
   const [state, setState] = useState({
@@ -12,7 +12,7 @@ function Signup() {
     email: "",
     password: "",
     confirmPassword: "",
-    role: "Student", // Default role
+    role: "Student", 
   });
 
   const [loading, setLoading] = useState(false);
@@ -24,14 +24,12 @@ function Signup() {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  // Form submission handler
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       setLoading(true);
 
-      // Validation checks
       if (
         !state.name ||
         !state.email ||
@@ -57,12 +55,11 @@ function Signup() {
         return;
       }
 
-      // Sending form data to the backend
       const response = await axios.post("/api/signup", {
         name: state.name,
         email: state.email,
         password: state.password,
-        role: state.role, // Send the selected role
+        role: state.role, 
       });
 
       const data = response.data;
@@ -74,7 +71,7 @@ function Signup() {
         password: "",
         confirmPassword: "",
         role: "Student",
-      }); // Reset form state
+      }); 
     } catch (error: any) {
       toast.error(
         error?.response?.data?.error || "An error occurred. Please try again.",

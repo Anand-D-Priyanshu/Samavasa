@@ -6,26 +6,8 @@ const AboutUs: React.FC = () => {
     {
       name: "John Doe",
       title: "CEO & Founder",
-      image: "/images/john-doe.jpg", // Replace with actual image path
+      image: "/images/john-doe.jpg",
       bio: "John is the visionary behind our company, dedicated to creating innovative solutions and leading our team to success.",
-    },
-    {
-      name: "Jane Smith",
-      title: "CTO",
-      image: "/images/jane-smith.jpg", // Replace with actual image path
-      bio: "Jane is a technology enthusiast with a passion for coding and developing cutting-edge technology.",
-    },
-    {
-      name: "Emily Johnson",
-      title: "Marketing Manager",
-      image: "/images/emily-johnson.jpg", // Replace with actual image path
-      bio: "Emily is an expert in digital marketing strategies, helping our brand reach new heights.",
-    },
-    {
-      name: "Michael Brown",
-      title: "Design Lead",
-      image: "/images/michael-brown.jpg", // Replace with actual image path
-      bio: "Michael is the creative force behind our designs, ensuring our products are not only functional but also visually appealing.",
     },
   ];
 

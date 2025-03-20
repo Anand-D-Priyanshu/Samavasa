@@ -8,9 +8,9 @@ const Navbar = () => {
 
   const controlNavbar = () => {
     if (window.scrollY > lastScrollY.current) {
-      setVisible(false); // Scrolling down
+      setVisible(false); 
     } else {
-      setVisible(true); // Scrolling up
+      setVisible(true);
     }
     lastScrollY.current = window.scrollY;
   };
