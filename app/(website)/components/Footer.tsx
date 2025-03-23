@@ -1,287 +1,230 @@
 "use client";
-import { useState } from "react";
-import React from "react";
-import axios from "axios";
-
-const NewsletterForm = () => {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("/api/newsletter", { email });
-      setMessage(response.data.message);
-    } catch (error: any) {
-      setMessage(error.response?.data?.message || "An error occurred");
-    }
-  };
-
-  return (
-    <div className="w-full lg:w-2/3 xl:w-3/4 mx-auto">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="UserEmail" className="sr-only">
-          Email
-        </label>
-        <div className="flex flex-col sm:flex-row items-center border border-gray-100 p-2 focus-within:ring">
-          <input
-            type="email"
-            id="UserEmail"
-            placeholder="Enter Your Email Here For Newsletter"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full sm:w-3/4 lg:w-2/3 xl:w-1/2 border-none focus:border-transparent focus:ring-transparent sm:text-sm"
-            required
-          />
-          <button className="mt-2 sm:mt-0 sm:ml-4 w-full sm:w-auto bg-teal-500 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-none hover:bg-teal-600">
-            Sign Up
-          </button>
-        </div>
-        {message && <p className="mt-2 text-gray-500">{message}</p>}
-      </form>
-    </div>
-  );
-};
 
 const footer = () => {
   return (
     <div>
-      <footer className="bg-white">
-        <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="lg:flex lg:items-start lg:gap-8">
-            <div className="text-teal-600">
-              <svg
-                className="h-8"
-                viewBox="0 0 28 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0.41 10.3847C1.14777 7.4194 2.85643 4.7861 5.2639 2.90424C7.6714 1.02234 10.6393 0 13.695 0C16.7507 0 19.7186 1.02234 22.1261 2.90424C24.5336 4.7861 26.2422 7.4194 26.98 10.3847H25.78C23.7557 10.3549 21.7729 10.9599 20.11 12.1147C20.014 12.1842 19.9138 12.2477 19.81 12.3047H19.67C19.5662 12.2477 19.466 12.1842 19.37 12.1147C17.6924 10.9866 15.7166 10.3841 13.695 10.3841C11.6734 10.3841 9.6976 10.9866 8.02 12.1147C7.924 12.1842 7.8238 12.2477 7.72 12.3047H7.58C7.4762 12.2477 7.376 12.1842 7.28 12.1147C5.6171 10.9599 3.6343 10.3549 1.61 10.3847H0.41ZM23.62 16.6547C24.236 16.175 24.9995 15.924 25.78 15.9447H27.39V12.7347H25.78C24.4052 12.7181 23.0619 13.146 21.95 13.9547C21.3243 14.416 20.5674 14.6649 19.79 14.6649C19.0126 14.6649 18.2557 14.416 17.63 13.9547C16.4899 13.1611 15.1341 12.7356 13.745 12.7356C12.3559 12.7356 11.0001 13.1611 9.86 13.9547C9.2343 14.416 8.4774 14.6649 7.7 14.6649C6.9226 14.6649 6.1657 14.416 5.54 13.9547C4.4144 13.1356 3.0518 12.7072 1.66 12.7347H0V15.9447H1.61C2.39051 15.924 3.154 16.175 3.77 16.6547C4.908 17.4489 6.2623 17.8747 7.65 17.8747C9.0377 17.8747 10.392 17.4489 11.53 16.6547C12.1468 16.1765 12.9097 15.9257 13.69 15.9447C14.4708 15.9223 15.2348 16.1735 15.85 16.6547C16.9901 17.4484 18.3459 17.8738 19.735 17.8738C21.1241 17.8738 22.4799 17.4484 23.62 16.6547ZM23.62 22.3947C24.236 21.915 24.9995 21.664 25.78 21.6847H27.39V18.4747H25.78C24.4052 18.4581 23.0619 18.886 21.95 19.6947C21.3243 20.156 20.5674 20.4049 19.79 20.4049C19.0126 20.4049 18.2557 20.156 17.63 19.6947C16.4899 18.9011 15.1341 18.4757 13.745 18.4757C12.3559 18.4757 11.0001 18.9011 9.86 19.6947C9.2343 20.156 8.4774 20.4049 7.7 20.4049C6.9226 20.4049 6.1657 20.156 5.54 19.6947C4.4144 18.8757 3.0518 18.4472 1.66 18.4747H0V21.6847H1.61C2.39051 21.664 3.154 21.915 3.77 22.3947C4.908 23.1889 6.2623 23.6147 7.65 23.6147C9.0377 23.6147 10.392 23.1889 11.53 22.3947C12.1468 21.9165 12.9097 21.6657 13.69 21.6847C14.4708 21.6623 15.2348 21.9135 15.85 22.3947C16.9901 23.1884 18.3459 23.6138 19.735 23.6138C21.1241 23.6138 22.4799 23.1884 23.62 22.3947Z"
-                  fill="currentColor"
-                />
-              </svg>
+      <footer className="bg-white lg:w-full">
+        <div className="mx-auto max-w-screen-xl lg:px-4 py-4">
+          <div className="lg:pb-2 lg:block flex flex-col items-center pb-20 text-lg lg:font-mono">
+            <img className="w-6 " src="https://static.vecteezy.com/system/resources/previews/007/087/131/non_2x/lhm-letter-logo-design-on-black-background-lhm-creative-initials-letter-logo-concept-lhm-letter-design-vector.jpg" alt="HMs" />
+            <div className="flex lg:flex-row flex-col items-center justify-between">
+              <p>Stay.Explore.Connect.</p>
+              <div className="flex lg:mt-0 mt-4 text-sm lg:text-md items-center">
+                <p>Ready to get started?</p>
+                <button className="lg:px-8 ml-12 lg:ml-12 lg:py-2 bg-[#9bd3e5] font-mono text-xs px-2 lg:text-sm rounded lg:rounded-lg">Get Started</button>
+              </div>
             </div>
+            <div className="lg:hidden mt-8 mb-4">
+              <div className="flex justify-center items-center">
+                <div className="space-y-3">
+                  <details className="relative">
+                    <summary className="text-blue-300 flex items-center cursor-pointer hover:text-blue-500 transition-colors">
+                      Services <span className="ml-32">▾</span>
+                    </summary>
+                    <div className="absolute left-0 mt-1 w-full bg-[#9bd8ea] z-40 shadow-md rounded">
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-200 hover:text-blue-500 transition-colors">Service 1</a>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-200 hover:text-blue-500 transition-colors">Service 2</a>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-200 hover:text-blue-500 transition-colors">Service 3</a>
+                    </div>
+                  </details>
 
-            <div className="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
-              <div className="col-span-2">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900">
-                    Get the latest news!
-                  </h2>
+                  <details className="relative">
+                    <summary className="text-blue-300 flex items-center cursor-pointer hover:text-blue-500 transition-colors">
+                      About <span className="ml-[69%]">▾</span>
+                    </summary>
+                    <div className="absolute z-40 bg-[#9bd8ea] left-0 mt-1 w-full shadow-md rounded">
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-200 hover:text-blue-500 transition-colors">Our Team</a>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-200 hover:text-blue-500 transition-colors">Our Story</a>
+                    </div>
+                  </details>
 
-                  <p className="mt-4 text-gray-500">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Esse non cupiditate quae nam molestias.
-                  </p>
+                  <details className="relative">
+                    <summary className="text-blue-300 flex items-center cursor-pointer hover:text-blue-500 transition-colors">
+                      Help <span className="ml-[75%]">▾</span>
+                    </summary>
+                    <div className=" absolute bg-[#9bd8ea] left-0 mt-1 w-full z-40 shadow-md rounded">
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-200 hover:text-blue-500 transition-colors">FAQ</a>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-200 hover:text-blue-500 transition-colors">Support</a>
+                    </div>
+                  </details>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="lg:grid hidden gap-5 border-t-2 border-gray-100 pt-6 lg:grid-cols-4">
+            <div className="lg:w-[400px]">
+              <p className="font-medium text-[#9bd3e5]">Hostelbees</p>
+              <ul className="mt-6 text-m">
+                <li>
+                  Lorem ipsum dolor sit amet,consectetur piscing elit, sed do eiusmod tempor incididunt ut labore et dolo magna
+                </li>
+              </ul>
+            </div>
 
-              <div className="col-span-2 lg:col-span-3 lg:flex lg:items-end">
-                <NewsletterForm />
-              </div>
+            <div className="lg:ml-52">
+              <p className="font-medium text-[#9bd3e5]">Services</p>
+              <ul className="mt-6 space-y-4 text-sm">
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    For Admins{" "}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    For Warden{" "}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75">
+                    {" "}
+                    For student{" "}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    Back to top{" "}
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-              <div className="col-span-2 sm:col-span-1">
-                <p className="font-medium text-gray-900">Services</p>
+            <div className="lg:ml-40">
+              <p className="font-medium text-[#9bd3e5]">About</p>
+              <ul className="mt-6 space-y-4 text-sm">
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    Our Story{" "}
+                  </a>
+                </li>
 
-                <ul className="mt-6 space-y-4 text-sm">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      1on1 Coaching{" "}
-                    </a>
-                  </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    Plans{" "}
+                  </a>
+                </li>
 
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Company Review{" "}
-                    </a>
-                  </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    Team{" "}
+                  </a>
+                </li>
 
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Accounts Review{" "}
-                    </a>
-                  </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    Careers{" "}
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      HR Consulting{" "}
-                    </a>
-                  </li>
+            <div className="lg:ml-24">
+              <p className="font-medium text-[#9bd3e5]">Help</p>
 
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      SEO Optimisation{" "}
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <ul className="mt-6 space-y-4 text-sm">
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    F&QS
+                  </a>
+                </li>
 
-              <div className="col-span-2 sm:col-span-1">
-                <p className="font-medium text-gray-900">Company</p>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    Blogs{" "}
+                  </a>
+                </li>
 
-                <ul className="mt-6 space-y-4 text-sm">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      About{" "}
-                    </a>
-                  </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    About us{" "}
+                  </a>
+                </li>
 
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Meet the Team{" "}
-                    </a>
-                  </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-700 transition hover:opacity-75"
+                  >
+                    {" "}
+                    Contact us{" "}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Accounts Review{" "}
-                    </a>
-                  </li>
-                </ul>
-              </div>
 
-              <div className="col-span-2 sm:col-span-1">
-                <p className="font-medium text-gray-900">Helpful Links</p>
+          <div className="mt-8 pt-6 ">
+            <div className="flex lg:flex-row items-center justify-center flex-col font-mono sm:justify-between">
+              <p className="text-xs text-gray-500">
+                &copy; 2023  All rights reserved.
+              </p>
 
-                <ul className="mt-6 space-y-4 text-sm">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Contact{" "}
-                    </a>
-                  </li>
+              <ul className="lg:flex gap-4 text-xs lg:mt-0 lg:justify-end">
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-500 transition hover:opacity-75"
+                  >
+                    {" "}
+                    Terms & Conditions{" "}
+                  </a>
+                </li>
+              </ul>
+              <ul className="lg:flex gap-4 text-xs lg:mt-0 lg:justify-end">
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-500 transition hover:opacity-75"
+                  >
+                    {" "}
+                    Privacy Policy{" "}
+                  </a>
+                </li>
+              </ul>
 
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      FAQs{" "}
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Live Chat{" "}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="col-span-2 sm:col-span-1">
-                <p className="font-medium text-gray-900">Legal</p>
-
-                <ul className="mt-6 space-y-4 text-sm">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Accessibility{" "}
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Returns Policy{" "}
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Refund Policy{" "}
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Hiring Statistics{" "}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="col-span-2 sm:col-span-1">
-                <p className="font-medium text-gray-900">Downloads</p>
-
-                <ul className="mt-6 space-y-4 text-sm">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      Marketing Calendar{" "}
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="#"
-                      className="text-gray-700 transition hover:opacity-75"
-                    >
-                      {" "}
-                      SEO Infographics{" "}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <ul className="col-span-2 flex justify-start gap-6 lg:col-span-5 lg:justify-end">
+              <ul className="col-span-2 absolute lg:static bottom-32 flex justify-start gap-5 lg:gap-6 lg:col-span-5 lg:justify-end">
                 <li>
                   <a
                     href="#"
@@ -381,60 +324,8 @@ const footer = () => {
                     target="_blank"
                     className="text-gray-700 transition hover:opacity-75"
                   >
-                    <span className="sr-only">Dribbble</span>
-
-                    <svg
-                      className="size-6"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-8 border-t border-gray-100 pt-8">
-            <div className="sm:flex sm:justify-between">
-              <p className="text-xs text-gray-500">
-                &copy; 2022. Company Name. All rights reserved.
-              </p>
-
-              <ul className="mt-8 flex flex-wrap justify-start gap-4 text-xs sm:mt-0 lg:justify-end">
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-500 transition hover:opacity-75"
-                  >
-                    {" "}
-                    Terms & Conditions{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-500 transition hover:opacity-75"
-                  >
-                    {" "}
-                    Privacy Policy{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-500 transition hover:opacity-75"
-                  >
-                    {" "}
-                    Cookies{" "}
+                    <span className="sr-only">Linkdin</span>
+                    <img className="size-5 opacity-75" src="https://www.svgrepo.com/show/108614/linkedin.svg" alt="" />
                   </a>
                 </li>
               </ul>
