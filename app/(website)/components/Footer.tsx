@@ -3,7 +3,7 @@
 const footer = () => {
   return (
     <div>
-      <footer className="bg-white lg:w-full">
+      <footer className="bg-white relative lg:w-full">
         <div className="mx-auto max-w-screen-xl lg:px-4 py-4">
           <div className="lg:pb-2 lg:block flex flex-col items-center pb-20 text-lg lg:font-mono">
             <img className="w-6 " src="https://static.vecteezy.com/system/resources/previews/007/087/131/non_2x/lhm-letter-logo-design-on-black-background-lhm-creative-initials-letter-logo-concept-lhm-letter-design-vector.jpg" alt="HMs" />
