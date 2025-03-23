@@ -1,117 +1,40 @@
-"use client";
-import { useState, useEffect, useRef } from "react";
+"use client"
+import React from 'react'
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [visible, setVisible] = useState(true);
-  const lastScrollY = useRef(0);
-
-  const controlNavbar = () => {
-    if (window.scrollY > lastScrollY.current) {
-      setVisible(false); 
-    } else {
-      setVisible(true);
-    }
-    lastScrollY.current = window.scrollY;
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", controlNavbar);
-    return () => {
-      window.removeEventListener("scroll", controlNavbar);
-    };
-  }, []);
-
-  const toggleMenu = () => setIsOpen((prev) => !prev);
-
   return (
-    <nav
-      className={`bg-background border-b backdrop-blur-lg sticky top-0 transition-transform duration-300 ${
-        visible ? "translate-y-0" : "-translate-y-full"
-      }`}
-    >
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8"
-            alt="Logo"
-          />
-          <span className="self-center text-2xl font-semibold text-foreground">
-            LOGO
-          </span>
-        </a>
-        <div className="flex md:order-2 space-x-3 rtl:space-x-reverse">
-          <a href="/auth/signup">
-            <button
-              type="button"
-              className="bg-foreground text-background hover:opacity-90 focus:ring-4 focus:outline-none font-medium rounded-lg text-xl px-2 py-1"
-            >
-              Get started
-            </button>
-          </a>
-          <button
-            onClick={toggleMenu}
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-foreground rounded-lg md:hidden hover:bg-gray-200 dark:hover:bg-gray-800 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600"
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-5 h-5"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
-              aria-hidden="true"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
-            </svg>
-          </button>
+    <div>
+      <nav className="w-full h-14 items-center flex justify-between px-10 lg:px-44">
+        <ul>
+          <li className="font-semibold lg:text-xl text-2xl hover:scale-110 text-[#9bd3e5]">HMS</li>
+        </ul>
+        <ul className="lg:flex hidden justify-between w-72 ">
+          <li className="hover:text-[#9bd3e5] hover:font-medium">Home</li>
+          <li className="hover:text-[#9bd3e5] hover:font-medium">About</li>
+          <li className="hover:text-[#9bd3e5] hover:font-medium">contact</li>
+        </ul>
+        <div>
+          <button className="border-2 hidden lg:flex border-[#80c3d9] px-3 text-white bg-[#b0dae8] rounded-md hover:scale-110">Sign In</button>
         </div>
-        <div
-          className={`items-center w-full md:flex md:w-auto md:order-1 ${
-            isOpen ? "block" : "hidden"
-          }`}
-          id="navbar-cta"
-        >
-          <ul className="flex flex-col text-lg font-semibold p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-background md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
-            <li>
-              <a
-                href="/"
-                className="block py-2 px-3 md:p-0 text-foreground hover:underline"
-                aria-current="page"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="/about"
-                className="block py-2 px-3 md:p-0 text-foreground hover:underline"
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <a
-                href="/contact"
-                className="block py-2 px-3 md:p-0 text-foreground hover:underline"
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
+        <div className="lg:hidden ">
+          <div className="flex justify-center items-center ">
+            <div className="relative group cursor-pointer">
+              <div className="w-9 h-7 flex flex-col justify-between">
+                <div className="w-full h-1 bg-[#80c3d9] transition-all"></div>
+                <div className="w-full h-1 bg-[#80c3d9] transition-all"></div>
+                <div className="w-full h-1 bg-[#80c3d9] transition-all"></div>
+              </div>
+              <div className="absolute right-0 top-0 text-sm rounded bg-[#bde0eb] shadow-lg w-32 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300">
+                <a href="#" className="block px-4 py-2 hover:text-white">HOME</a>
+                <a href="#" className="block px-4 py-2 hover:text-white">ABOUT US</a>
+                <a href="#" className="block px-4 py-2 hover:text-white">CONTACT</a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
-  );
-};
+      </nav>
+    </div>
+  )
+}
 
-export default Navbar;
+export default Navbar
