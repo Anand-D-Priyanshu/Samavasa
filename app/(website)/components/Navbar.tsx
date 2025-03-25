@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
           <li key={item.label}>
             <Link
               href={item.href}
-              className={`transition-colors hover:font-medium hover:text-[#9bd3e5] ${
+              className={` hover:font-medium hover:text-[#9bd3e5] transition-all duration-300 ease-in-out ${
                 pathname === item.href ? "text-[#9bd3e5] font-medium" : ""
               }`}
             >
@@ -51,10 +51,13 @@ const Navbar: React.FC = () => {
         ))}
       </ul>
 
-      {/* Sign In Button */}
-      <button className="hidden rounded-md border-2 border-[#80c3d9] bg-[#b0dae8] px-3 text-white hover:bg-[#9bd3e5] lg:flex">
+      {/* Sign In Link */}
+      <Link
+        href="/not-found"
+        className="hidden rounded-md py-1 border-2 border-[#80c3d9] bg-[#b0dae8] px-3 text-white hover:bg-[#9bd3e5] lg:flex"
+      >
         Sign In
-      </button>
+      </Link>
 
       {/* Mobile Menu */}
       <div className="lg:hidden" ref={menuRef}>

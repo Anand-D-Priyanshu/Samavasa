@@ -9,7 +9,7 @@ import {
   FaTwitter,
   FaGithub,
   FaLinkedinIn,
-  FaTimes, // Added for the cross icon
+  FaTimes,
 } from "react-icons/fa";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
@@ -92,35 +92,39 @@ const MobileDropdown: React.FC<MenuItem> = ({ title, links }) => {
     <div ref={dropdownRef} className="relative w-full">
       <button
         onClick={toggleDropdown}
-        className="flex w-full items-center justify-between py-2 px-4 text-gray-700 font-medium bg-white rounded-lg shadow-md hover:bg-gray-100 transition-colors"
+        className="flex w-full items-center justify-between py-2 px-4 text-gray-700 font-medium bg-white rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-200"
       >
         {title}
-        <span className="ml-2">
+        <span className="ml-2 transition-transform duration-300 ease-in-out">
           {isOpen ? (
-            <FaTimes className="w-4 h-4 text-gray-600" />
+            <FaTimes className="w-4 h-4 text-gray-600 transform rotate-180" />
           ) : (
-            <RiArrowDropDownLine className="w-6 h-6 text-gray-600" />
+            <RiArrowDropDownLine className="w-6 h-6 text-gray-600 transform rotate-0" />
           )}
         </span>
       </button>
 
-      {isOpen && (
-        <div className="absolute left-0 mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-          <ul className="py-2">
-            {links.map((link, index) => (
-              <li key={index}>
-                <Link
-                  href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
-                  onClick={() => setIsOpen(false)}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"
-                >
-                  {link}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div
+        className={`absolute left-0 mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-10 transition-all duration-300 ease-in-out ${
+          isOpen
+            ? "opacity-100 translate-y-0 visible"
+            : "opacity-0 -translate-y-2 invisible"
+        }`}
+      >
+        <ul className="py-2">
+          {links.map((link, index) => (
+            <li key={index}>
+              <Link
+                href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors duration-200"
+              >
+                {link}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
@@ -161,7 +165,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex items-center gap-4 lg:gap-16">
               <p className="lg:text-lg text-sm">Ready to get started?</p>
-              <button className="px-6 py-2 bg-[#9ECFE0] text-black rounded-lg transition-colors font-medium">
+              <button className="px-6 py-2 bg-[#9ECFE0] hover:bg-[#84c8de] text-white rounded-lg transition-colors font-semibold hover:shadow-lg">
                 Get Started
               </button>
             </div>
@@ -178,7 +182,6 @@ const Footer: React.FC = () => {
               hostels, trusted service, and vibrant communities.
             </p>
           </div>
-          {/* <div className="hidden lg:grid lg:grid-cols-3 justify-between gap-8 col-span-3"> */}
           <div className="hidden w-full lg:flex lg:pl-20 justify-around ">
             {MENU_ITEMS.map((item, index) => (
               <DesktopMenu key={index} {...item} />
