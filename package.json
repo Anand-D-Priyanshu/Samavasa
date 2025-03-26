@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.16",
+    "animate.css": "^4.1.1",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.1.1",
